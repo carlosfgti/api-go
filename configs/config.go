@@ -7,17 +7,17 @@ import (
 var cfg *config
 
 type config struct {
-	DBDrive string
-	DBHost  string
-	DBName  string
-	DBPort  string
-	DBUser  string
-	DBPass  string
+	DBDrive string `mapstructure:"DB_DRIVE"`
+	DBHost  string `mapstructure:"DB_HOST"`
+	DBName  string `mapstructure:"DB_NAME"`
+	DBPort  string `mapstructure:"DB_PORT"`
+	DBUser  string `mapstructure:"DB_USER"`
+	DBPass  string `mapstructure:"DB_PASS"`
 
-	ServerPort string
+	ServerPort string `mapstructure:"SERVER_PORT"`
 
-	JWTSecret    string
-	JWTExpiresIn int
+	JWTSecret    string `mapstructure:"JWT_SECRET"`
+	JWTExpiresIn int    `mapstructure:"JWT_EXPIRES_IN"`
 }
 
 func Init(path string) (*config, error) {
