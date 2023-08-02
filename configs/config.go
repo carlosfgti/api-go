@@ -1,5 +1,9 @@
 package configs
 
+import (
+	"github.com/spf13/viper"
+)
+
 var cfg *config
 
 type config struct {
@@ -16,6 +20,19 @@ type config struct {
 	JWTExpiresIn int
 }
 
-// func Init(path string) (*config, error) {
-
-// }
+func Init(path string) (*config, error) {
+	viper.SetConfigFile("config_app")
+	viper.SetConfigType("env")
+	viper.AddConfigPath(path)
+	viper.SetConfigFile(".env")
+	viper.AutomaticEnv()
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(err)
+	}
+	err = viper.Unmarshal(&cfg)
+	if err != nil {
+		panic(err)
+	}
+	return cfg, err
+}
