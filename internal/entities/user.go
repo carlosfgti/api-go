@@ -1,14 +1,15 @@
 package entities
 
 import (
+	"github.com/carlosfgti/go-api/pkg/value_object"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
-	ID       string `json:"id"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"-"`
+	ID       value_object.ID `json:"id"`
+	Name     string          `json:"name"`
+	Email    string          `json:"email"`
+	Password string          `json:"-"`
 }
 
 func NewUser(name, email, password string) (*User, error) {
@@ -17,7 +18,7 @@ func NewUser(name, email, password string) (*User, error) {
 		return nil, err
 	}
 	return &User{
-		ID:       "id",
+		ID:       value_object.NewId(),
 		Name:     name,
 		Email:    email,
 		Password: string(hash),
