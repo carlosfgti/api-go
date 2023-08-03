@@ -2,7 +2,10 @@ module github.com/carlosfgti/go-api
 
 go 1.20
 
-require github.com/spf13/viper v1.16.0
+require (
+	github.com/spf13/viper v1.16.0
+	golang.org/x/crypto v0.9.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
