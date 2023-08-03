@@ -3,6 +3,7 @@ module github.com/carlosfgti/go-api
 go 1.20
 
 require (
+	github.com/google/uuid v1.1.2
 	github.com/spf13/viper v1.16.0
 	golang.org/x/crypto v0.9.0
 )
