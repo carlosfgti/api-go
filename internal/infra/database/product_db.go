@@ -16,3 +16,9 @@ func NewProduct(db *gorm.DB) *Product {
 func (prod *Product) Create(product *entities.Product) error {
 	return prod.DB.Create(product).Error
 }
+
+func (prod *Product) FindByID(id string) (*entities.Product, error) {
+	var product entities.Product
+	err := prod.DB.First(&product, "id = ?", id).Error
+	return &product, err
+}
