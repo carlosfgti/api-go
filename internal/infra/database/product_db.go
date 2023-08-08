@@ -1,6 +1,9 @@
 package database
 
-import "gorm.io/gorm"
+import (
+	"github.com/carlosfgti/go-api/internal/entities"
+	"gorm.io/gorm"
+)
 
 type Product struct {
 	DB *gorm.DB
@@ -8,4 +11,8 @@ type Product struct {
 
 func NewProduct(db *gorm.DB) *Product {
 	return &Product{DB: db}
+}
+
+func (prod *Product) Create(product *entities.Product) error {
+	return prod.DB.Create(product).Error
 }
