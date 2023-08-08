@@ -22,3 +22,11 @@ func (prod *Product) FindByID(id string) (*entities.Product, error) {
 	err := prod.DB.First(&product, "id = ?", id).Error
 	return &product, err
 }
+
+func (prod *Product) Update(product *entities.Product) error {
+	_, err := prod.FindByID(product.ID.String())
+	if err != nil {
+		return err
+	}
+	return prod.DB.Save(product).Error
+}
