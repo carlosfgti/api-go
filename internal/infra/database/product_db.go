@@ -38,3 +38,17 @@ func (prod *Product) Delete(id string) error {
 	}
 	return prod.DB.Delete(product).Error
 }
+
+func (prod *Product) FindAll(page, limit int, sort string) ([]entities.Product, error) {
+	var products []entities.Product
+	var err error
+	if sort != "" && sort != "asc" && sort != "desc" {
+		sort = "asc"
+	}
+	if page != 0 && limit != 0 {
+		err = prod.DB.Limit(limit).Offset((page - 1) * limit).Order("created_at " + sort).Find(&products).Error
+	} else {
+		err = prod.DB.Order("created_at " + sort).Find(&products).Error
+	}
+	return products, err
+}
